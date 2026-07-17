@@ -1,0 +1,8 @@
+# jiehong
+
+> Personal site of Jiehong. The long-running blog is preserved as a static archive.
+
+## Pages
+
+- [Home](https://jiehong.org/): Personal landing
+- [Archive](https://archive.jiehong.org/): Blog post archive (2000s–2010s) with optional nostalgia skins

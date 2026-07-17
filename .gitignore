@@ -1,0 +1,51 @@
+# Secrets / local env
+.env
+.env.*
+.dev/
+.DS_Store
+*.pem
+*.key
+*.p12
+id_rsa
+id_ed25519
+id_ed25519.pub
+
+# Deploy keys + tooling (studio/laptop only — not published)
+.deploy/
+deploy.sh
+deploy/
+backups/
+
+# Studio harness (local agents / beads — not the product)
+AGENTS.md
+studioplaybook.md
+SPEC.md
+.beads/
+.beads-credential-key
+.grok/
+.agents/
+.cursor/
+.claude/
+.hermes/
+.codex/
+.continue/
+.opencode/
+skills/
+skills-lock.json
+*.local.md
+AGENTS.local.md
+CLAUDE.md
+CLAUDE.local.md
+
+# Scrape scratch (committed output lives under archive/)
+scripts/.cache/
+scripts/_tmp/
+__pycache__/
+*.pyc
+.pytest_cache/
+
+# OS / editors
+*.swp
+*~
+.idea/
+.vscode/

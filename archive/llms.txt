@@ -1,0 +1,8 @@
+# jiehong archive
+
+> Static archive of the jiehong.org blog. Default view is plain markdown; optional nostalgia skins available.
+
+## Pages
+
+- [Archive home](https://archive.jiehong.org/): Post index
+- [Personal site](https://jiehong.org/): Apex landing
