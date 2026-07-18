@@ -18,6 +18,7 @@ for p in \
   frontend/robots.txt \
   frontend/sitemap.xml \
   archive/index.html \
+  archive/banner.css \
   archive/app.js \
   archive/lib.js \
   archive/content/manifest.json \

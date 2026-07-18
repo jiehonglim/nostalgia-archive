@@ -1,0 +1,121 @@
+/* Shared top nav — Stripe Docs–inspired; skin-agnostic */
+/*
+ * Layout tokens are px-only. Skins change body font-size; if we used rem here,
+ * the nav would shift when cycling skins.
+ */
+:root {
+  --na-content-max: 720px;
+  --na-pad-x: 20px;
+  --na-purple: #635bff;
+  --na-ink: #0a2540;
+  --na-muted: #6b7c93;
+  --na-rule: #e3e8ee;
+  --na-bg: #f6f9fc;
+  --na-white: #ffffff;
+}
+
+/* Stable root — skins must not change html font-size */
+html {
+  font-size: 16px;
+  scrollbar-gutter: stable;
+}
+
+/* Full-bleed white bar (never shrink to content width) */
+.site-nav {
+  display: block;
+  width: 100%;
+  box-sizing: border-box;
+  background: var(--na-white);
+  border-bottom: 1px solid var(--na-rule);
+  font-family:
+    -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue",
+    Arial, sans-serif;
+  font-size: 14px;
+  line-height: 1.4;
+  color: var(--na-ink);
+  /* Isolate from skin body type */
+  font-style: normal;
+  letter-spacing: normal;
+  text-transform: none;
+}
+
+/* Shared content column — same width as skin chrome / #app */
+.site-nav-inner,
+.na-col {
+  display: block;
+  width: 100%;
+  max-width: var(--na-content-max);
+  margin-left: auto;
+  margin-right: auto;
+  padding-left: var(--na-pad-x);
+  padding-right: var(--na-pad-x);
+  box-sizing: border-box;
+}
+
+.site-nav-inner {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  padding-top: 14px;
+  padding-bottom: 14px;
+}
+
+.site-nav-brand {
+  color: var(--na-ink);
+  text-decoration: none;
+  font-weight: 600;
+  font-size: 15px;
+  letter-spacing: -0.01em;
+  white-space: nowrap;
+}
+
+.site-nav-brand:hover {
+  color: var(--na-purple);
+}
+
+.site-nav-skins {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: flex-end;
+  gap: 4px 16px;
+}
+
+.site-nav-skin {
+  color: var(--na-muted);
+  text-decoration: none;
+  font-size: 13px;
+  font-weight: 500;
+  padding: 2px 0;
+  border-bottom: 2px solid transparent;
+}
+
+.site-nav-skin:hover {
+  color: var(--na-ink);
+}
+
+.site-nav-skin.is-active,
+.site-nav-skin[aria-current="page"] {
+  color: var(--na-purple);
+  border-bottom-color: var(--na-purple);
+  /* Keep weight constant — bolding the active link shifts the row when cycling skins */
+  font-weight: 500;
+}
+
+#chrome {
+  width: 100%;
+  box-sizing: border-box;
+}
+
+@media (max-width: 560px) {
+  .site-nav-inner {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 10px;
+  }
+  .site-nav-skins {
+    justify-content: flex-start;
+    gap: 4px 14px;
+  }
+}

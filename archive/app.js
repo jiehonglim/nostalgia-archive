@@ -39,8 +39,6 @@
     document.body.dataset.skin = name;
     const link = qs("#skin-css");
     if (link) link.href = "/skins/" + name + "/skin.css";
-    const sel = qs("#skin-select");
-    if (sel) sel.value = name;
     // keep ?skin= in URL without reload when switching
     const u = new URL(location.href);
     if (name === DEFAULT_SKIN) u.searchParams.delete("skin");
@@ -73,67 +71,67 @@
     return html;
   }
 
-  function skinSwitcherHtml() {
+  function skinHref(name) {
+    const path = location.pathname || "/";
+    if (name === DEFAULT_SKIN) return path;
+    return path + "?skin=" + encodeURIComponent(name);
+  }
+
+  function siteNavHtml() {
     const cur = getSkin();
     return (
-      '<label class="skin-switch">Skin <select id="skin-select" aria-label="Archive skin">' +
+      '<header class="site-nav" aria-label="Archive navigation">' +
+      '<div class="site-nav-inner">' +
+      '<a class="site-nav-brand" href="/">jiehong archive</a>' +
+      '<nav class="site-nav-skins" aria-label="Archive skin">' +
       SKINS.map(function (s) {
+        const active = s === cur;
         return (
-          '<option value="' +
+          '<a class="site-nav-skin' +
+          (active ? " is-active" : "") +
+          '" href="' +
+          skinHref(s) +
+          '" data-skin="' +
           s +
           '"' +
-          (s === cur ? " selected" : "") +
+          (active ? ' aria-current="page"' : "") +
           ">" +
           s +
-          "</option>"
+          "</a>"
         );
       }).join("") +
-      "</select></label>"
+      "</nav></div></header>"
     );
   }
 
-  function bindSkinSelect() {
-    const sel = qs("#skin-select");
-    if (sel) {
-      sel.addEventListener("change", function () {
-        setSkin(sel.value);
+  function bindSkinNav() {
+    document.querySelectorAll(".site-nav-skin[data-skin]").forEach(function (a) {
+      a.addEventListener("click", function (e) {
+        e.preventDefault();
+        setSkin(a.getAttribute("data-skin"));
       });
-    }
+    });
   }
 
   function renderChrome() {
     const skin = getSkin();
     const chrome = qs("#chrome");
     if (!chrome) return;
-    const home = "/";
     const templates = {
-      plain:
-        '<header class="site-header"><a class="brand" href="' +
-        home +
-        '">jiehong archive</a>' +
-        skinSwitcherHtml() +
-        "</header>",
+      plain: "",
       win95:
+        '<div class="win95-shell"><div class="win95-window">' +
         '<div class="win95-titlebar"><span class="win95-title">Explorer — jiehong archive</span><span class="win95-btns">_ □ ×</span></div>' +
         '<div class="win95-menubar">File Edit View Help</div>' +
-        '<div class="win95-toolbar">' +
-        skinSwitcherHtml() +
-        ' <a href="' +
-        home +
-        '">Up</a></div>',
+        '<div class="win95-toolbar"><a href="/">Up</a></div></div></div>',
       geocities:
-        '<div class="gc-banner"><blink class="gc-blink">★ Under construction ★</blink> ' +
-        '<a href="' +
-        home +
-        '">jiehong\'s homepage</a> ' +
-        skinSwitcherHtml() +
-        "</div>" +
-        '<div class="gc-counter">You are visitor #<!-- est. -->115+</div>',
-      // winamp: switcher lives inside the player chrome (see renderWinamp)
+        '<div class="gc-flavor">' +
+        '<div class="gc-strip"><blink class="gc-blink">★ Under construction ★</blink></div>' +
+        '<div class="gc-counter">You are visitor #<!-- est. -->115+</div></div>',
       winamp: "",
     };
-    chrome.innerHTML = templates[skin] || templates.plain;
-    bindSkinSelect();
+    chrome.innerHTML = siteNavHtml() + (templates[skin] || "");
+    bindSkinNav();
   }
 
   function waDuration(date) {
@@ -273,9 +271,7 @@
       '<div class="wa-desktop">' +
       '<div class="wa-stack">' +
       '<div class="wa-win wa-main">' +
-      '<div class="wa-tb"><span class="wa-tb-title">WINAMP</span>' +
-      skinSwitcherHtml() +
-      "</div>" +
+      '<div class="wa-tb"><span class="wa-tb-title">WINAMP</span></div>' +
       '<div class="wa-display">' +
       '<div class="wa-mini-viz" aria-hidden="true"></div>' +
       '<div class="wa-now" title="' +
@@ -332,7 +328,6 @@
       body +
       "</div></div></div>";
 
-    bindSkinSelect();
     var active = qs(".wa-track.is-active");
     if (active && active.scrollIntoView) {
       active.scrollIntoView({ block: "nearest" });
@@ -526,6 +521,7 @@
       return;
     }
     manifest = await manRes.json();
+    renderChrome();
     refreshView();
   }
 

@@ -4,29 +4,47 @@ html, body {
   background: #000080 url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='24' height='24'%3E%3Ccircle cx='2' cy='2' r='1.2' fill='%23ff0'/%3E%3C/svg%3E");
   color: #ffff00;
   font-family: "Comic Sans MS", "Chalkboard SE", cursive, sans-serif;
+}
+body {
   font-size: 14px;
 }
-#chrome { text-align: center; padding: 8px; }
-.gc-banner {
+#chrome {
+  width: 100%;
+  text-align: left;
+  padding: 0;
+}
+/* Same 720 column as #app — no side pad (that shrunk the magenta strip) */
+#chrome .gc-flavor {
+  width: 100%;
+  max-width: var(--na-content-max, 720px);
+  margin: 8px auto 0;
+  padding: 0;
+  box-sizing: border-box;
+  text-align: center;
+}
+.gc-strip {
+  width: 100%;
+  box-sizing: border-box;
   background: #ff00ff;
   color: #fff;
-  padding: 8px;
+  padding: 6px 8px;
   border: 4px ridge #fff;
-  margin: 8px;
+  margin: 0 0 6px;
 }
 .gc-blink { color: #ffff00; }
 .gc-counter {
   color: #00ff00;
   font-family: "Courier New", monospace;
-  margin: 6px;
+  margin: 6px 0;
 }
-.skin-switch { color: #fff; }
 #app {
-  max-width: 640px;
+  width: 100%;
+  max-width: var(--na-content-max, 720px);
   margin: 0 auto 2rem;
+  padding: 1rem var(--na-pad-x, 20px);
+  box-sizing: border-box;
   background: #000;
   border: 6px groove #c0c0c0;
-  padding: 1rem;
   color: #00ff00;
 }
 #app a { color: #00ffff; }
@@ -42,7 +60,6 @@ h1 {
   border: 3px solid #ff0;
 }
 .meta, .note { color: #ffa500; font-size: 12px; }
-/* honor reduced motion: no blink animation */
 @media (prefers-reduced-motion: no-preference) {
   .gc-blink { animation: blink 1s step-start infinite; }
   @keyframes blink { 50% { opacity: 0; } }
