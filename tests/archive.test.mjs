@@ -118,13 +118,16 @@ test("skin CSS and switcher wiring exist", () => {
     );
   }
   const app = fs.readFileSync(path.join(root, "archive/app.js"), "utf8");
-  assert.match(app, /skin-select/);
+  assert.match(app, /site-nav/);
+  assert.match(app, /site-nav-skin/);
   assert.match(app, /setSkin/);
   assert.match(app, /NostalgiaArchiveLib/);
   const index = fs.readFileSync(path.join(root, "archive/index.html"), "utf8");
   assert.match(index, /src="\/lib\.js"/);
   assert.match(index, /src="\/app\.js"/);
   assert.match(index, /id="skin-css"/);
+  assert.match(index, /href="\/banner\.css"/);
+  assert.ok(fs.existsSync(path.join(root, "archive/banner.css")));
 });
 
 test("nginx config encodes legacy redirects", () => {

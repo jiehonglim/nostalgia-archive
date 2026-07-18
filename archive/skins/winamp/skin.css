@@ -5,15 +5,23 @@ html, body {
   background: #4a76b8;
   color: #00ef21;
   font-family: "MS Sans Serif", Tahoma, "Segoe UI", sans-serif;
+}
+body {
   font-size: 11px;
 }
 
-#chrome:empty { display: none; }
+#chrome {
+  width: 100%;
+  max-width: none;
+  margin: 0;
+  padding: 0;
+}
 
 #app {
   margin: 0;
   padding: 0;
   max-width: none;
+  width: 100%;
   background: transparent;
   border: none;
   min-height: 0;
@@ -23,10 +31,12 @@ html, body {
   display: flex;
   flex-wrap: wrap;
   align-items: stretch;
+  justify-content: flex-start;
   gap: 0;
-  max-width: 960px;
-  margin: 20px auto 32px;
-  padding: 12px;
+  width: 100%;
+  max-width: var(--na-content-max, 720px);
+  margin: 12px auto 32px;
+  padding: 0;
   box-sizing: border-box;
 }
 
@@ -65,24 +75,6 @@ html, body {
 }
 
 .wa-tb-title { color: #f0f0f0; }
-
-.wa-tb .skin-switch {
-  color: #9a9a9a;
-  font-size: 9px;
-  font-weight: normal;
-  letter-spacing: 0;
-  text-transform: none;
-  margin: 0;
-}
-.wa-tb .skin-switch select {
-  background: #1a1a1a;
-  color: #00ef21;
-  border: 1px solid #555;
-  border-color: #111 #666 #666 #111;
-  font-size: 9px;
-  padding: 0 2px;
-  max-width: 88px;
-}
 
 /* —— main player —— */
 .wa-main { padding-bottom: 4px; }
@@ -361,8 +353,8 @@ html, body {
 
 /* —— milkdrop / readable body —— */
 .wa-md {
-  flex: 1 1 320px;
-  min-width: 280px;
+  flex: 1 1 0;
+  min-width: 0;
   min-height: 420px;
   display: flex;
   flex-direction: column;
@@ -474,9 +466,9 @@ html, body {
 }
 
 @media (max-width: 640px) {
-  .wa-desktop { padding: 8px; }
+  .wa-desktop { padding: 0 var(--na-pad-x, 20px); }
   .wa-stack { width: 100%; flex-basis: 100%; }
-  .wa-md { margin-top: 0; min-height: 280px; }
+  .wa-md { margin-top: 0; min-height: 280px; min-width: 0; }
   .wa-pl-scroll { max-height: 240px; }
 }
 

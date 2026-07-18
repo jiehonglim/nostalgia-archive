@@ -11,12 +11,12 @@ Static archive of [jiehong.org](https://jiehong.org) — two decades of public b
 
 | Skin | Vibe |
 | --- | --- |
-| **plain** (default) | Readable markdown |
+| **plain** (default) | Clean docs-style reading view |
 | **win95** | Windows 95 explorer chrome |
 | **geocities** | HTML 3.2 / under-construction |
 | **winamp** | Classic Winamp 2 player |
 
-Switch with `?skin=` or the on-page switcher. Your choice is saved in `localStorage`.
+Switch with the top nav links or `?skin=`. Your choice is saved in `localStorage`.
 
 ## Layout
 
