@@ -1,11 +1,8 @@
 # nostalgia-archive
 
-Static archive of [jiehong.org](https://jiehong.org) — two decades of public blog posts, served as a plain markdown reader with optional nostalgia skins.
+Static archive of the [jiehong.org](https://jiehong.org) blog — two decades of public posts, served as a plain markdown reader with optional nostalgia skins.
 
-| Site | Role |
-| --- | --- |
-| [jiehong.org](https://jiehong.org) | Personal landing |
-| [archive.jiehong.org](https://archive.jiehong.org) | Full post archive + skins |
+Live at [archive.jiehong.org](https://archive.jiehong.org). The personal landing at jiehong.org is a separate site.
 
 ## Skins
 
@@ -21,7 +18,6 @@ Switch with the top nav links or `?skin=`. Your choice is saved in `localStorage
 ## Layout
 
 ```text
-frontend/   landing page
 archive/    reader, posts, media, skins
 scripts/    scrape + manifest rebuild
 tests/      static checks

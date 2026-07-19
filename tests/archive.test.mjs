@@ -130,13 +130,14 @@ test("skin CSS and switcher wiring exist", () => {
   assert.ok(fs.existsSync(path.join(root, "archive/banner.css")));
 });
 
-test("nginx config encodes legacy redirects", () => {
+test("nginx config is archive SPA only", () => {
   const ngPath = path.join(root, "deploy/nginx-config.sh");
   if (!fs.existsSync(ngPath)) {
     return; // public clone — deploy tooling is local-only
   }
   const ng = fs.readFileSync(ngPath, "utf8");
-  assert.match(ng, /20\[0-9\]\{2\}/);
-  assert.match(ng, /archive\.jiehong\.org/);
   assert.match(ng, /try_files \\\$uri \\\$uri\/ \/index\.html/);
+  assert.match(ng, /archive/);
+  // Legacy WP redirects live on jiehong.org (apps/jiehong), not here
+  assert.doesNotMatch(ng, /20\[0-9\]\{2\}/);
 });

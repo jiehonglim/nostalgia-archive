@@ -13,10 +13,6 @@ echo "OK public-copy-check"
 
 echo "==> Required tree"
 for p in \
-  frontend/index.html \
-  frontend/llms.txt \
-  frontend/robots.txt \
-  frontend/sitemap.xml \
   archive/index.html \
   archive/banner.css \
   archive/app.js \
