@@ -36,7 +36,6 @@ collect_docs() {
 
 FILES="$(
   {
-    collect_files frontend
     collect_files archive
     collect_docs
   } | sort -u
